@@ -6,6 +6,15 @@ import NotFound from './components/NotFound';
 import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter';
+import styled from 'styled-components';
+
+//CSS in JS
+const Title = styled.h1`
+  text-align: center;
+  font-weight: bold;
+
+  color: ${(props) => props.color || 'green'};
+`;
 
 function App() {
   useEffect(() => {
@@ -20,7 +29,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      Homepage
+      <Title color="goldenrod">Heading</Title>
       <p>
         {' '}
         <NavLink to="/todos" activeClassName="active-menu">
