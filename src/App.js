@@ -1,20 +1,12 @@
 // import './App.css';
-import TodoFeature from './features/Todo';
-import AlbumFeature from './features/Album';
-import { Link, Route, NavLink, Switch, Redirect } from 'react-router-dom/cjs/react-router-dom';
-import NotFound from './components/NotFound';
+import Header from 'components/Header';
 import { useEffect } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom';
 import productApi from './api/productApi';
+import NotFound from './components/NotFound';
+import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
-import styled from 'styled-components';
-
-//CSS in JS
-const Title = styled.h1`
-  text-align: center;
-  font-weight: bold;
-
-  color: ${(props) => props.color || 'green'};
-`;
+import TodoFeature from './features/Todo';
 
 function App() {
   useEffect(() => {
@@ -29,16 +21,8 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Title color="goldenrod">Heading</Title>
-      <p>
-        {' '}
-        <NavLink to="/todos" activeClassName="active-menu">
-          ToDo
-        </NavLink>
-      </p>
-      <p>
-        <NavLink to="/albums">Album</NavLink>
-      </p>
+      <Header />
+
       <Switch>
         <Redirect from="/home" to="/" exact />
         <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
