@@ -37,11 +37,25 @@ function RegisterForm(props) {
 
   const schema = yup.object().shape({
     // title: yup.string().required('Please enter title').min(5, 'Title is too short'),
+    fullName: yup
+      .string()
+      .required('Please enter your full name.')
+      .test('should has at least two words', 'Please enter at least two words.', (value) => {
+        // console.log('value', value);
+        return value.split(' ').length >= 2;
+      }),
+    email: yup.string().required('Please enter your email.').email('Please enter a valid email.'),
+    password: yup.string().required('Please enter your password.').min(6, 'Please enter at least 6 characters!'),
+    retypePassword: yup
+      .string()
+      .required('Please retype your password')
+      .oneOf([yup.ref('password')], 'Password does not match!'),
   });
 
   const form = useForm({
     defaultValues: {
       title: '',
+      fullName: '',
       email: '',
       password: '',
       retypePassword: '',
@@ -54,7 +68,7 @@ function RegisterForm(props) {
     if (onSubmit) {
       onSubmit(values);
     }
-    form.reset();
+    // form.reset();
   };
 
   return (
