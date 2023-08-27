@@ -2,17 +2,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LockOutlined } from '@material-ui/icons';
 import InputField from 'components/form-controls/InputField';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core';
+import { LinearProgress, makeStyles } from '@material-ui/core';
 import PasswordField from 'components/form-controls/PasswordField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'relative',
     paddingTop: theme.spacing(4),
   },
   avatar: {
@@ -26,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2, 0),
   },
+
+  progress: {
+    position: 'absolute',
+    top: theme.spacing(1),
+    left: 0,
+    right: 0,
+  },
 }));
 
 RegisterForm.propTypes = {
@@ -34,7 +42,7 @@ RegisterForm.propTypes = {
 
 function RegisterForm(props) {
   const classes = useStyles();
-
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   const schema = yup.object().shape({
     // title: yup.string().required('Please enter title').min(5, 'Title is too short'),
     fullName: yup
@@ -63,16 +71,22 @@ function RegisterForm(props) {
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
-      onSubmit(values);
+      setIsFormSubmitting(true);
+      await onSubmit(values);
+      setIsFormSubmitting(false);
     }
     // form.reset();
   };
 
+  // const { isSubmitting } = form.formState;
+
   return (
     <div className={classes.root}>
+      {isFormSubmitting && <LinearProgress className={classes.progress} />}
+
       <Avatar className={classes.avatar}>
         <LockOutlined></LockOutlined>
       </Avatar>
