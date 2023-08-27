@@ -7,8 +7,12 @@ import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
+import { Button } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 
 function App() {
+  const { enqueueSnackbar } = useSnackbar();
+
   useEffect(() => {
     const fectchProducts = async () => {
       const params = {
@@ -19,10 +23,15 @@ function App() {
     };
     fectchProducts();
   }, []);
+
+  const showNoti = () => {
+    enqueueSnackbar('Register successfully', { variant: 'info' });
+  };
+
   return (
     <div className="App">
       <Header />
-
+      <Button onClick={showNoti}>Show noti</Button>
       <Switch>
         <Redirect from="/home" to="/" exact />
         <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
