@@ -5,6 +5,11 @@ const userApi = {
     const url = '/auth/local/register';
     return await axiosClient.post(url, data);
   },
+
+  async login(data) {
+    const url = '/auth/local';
+    return await axiosClient.post(url, data);
+  },
 };
 
 export default userApi;

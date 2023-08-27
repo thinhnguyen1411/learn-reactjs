@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Close } from '@material-ui/icons';
 import CodeIcon from '@material-ui/icons/Code';
-import Register from 'features/Auth/components/Register';
+// import Register from 'features/Auth/components/Register';
+import Login from 'features/Auth/components/Login';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
 
@@ -71,7 +72,7 @@ export default function Header() {
           </NavLink>
 
           <Button color="inherit" onClick={handleClickOpen}>
-            Register
+            Login
           </Button>
         </Toolbar>
       </AppBar>
@@ -86,7 +87,8 @@ export default function Header() {
           <Close />
         </IconButton>
         <DialogContent>
-          <Register closeDialog={handleClose} />
+          {/* <Register closeDialog={handleClose} /> */}
+          <Login closeDialog={handleClose} />
         </DialogContent>
       </Dialog>
     </div>
