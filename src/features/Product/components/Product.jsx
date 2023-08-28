@@ -29,7 +29,7 @@ function Product({ product }) {
   return (
     <Box className={classes.boxContainer}>
       {/* <Skeleton variant="rect" width="100%" height={118} /> */}
-      <Box className={classes.imgContainer}>
+      <Box className={classes.imgContainer} minHeight="215px">
         <img src={thumbnailUrl} alt={product.name} width="100%" />
       </Box>
 
