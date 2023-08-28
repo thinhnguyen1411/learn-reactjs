@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
   imgContainer: {
     padding: 8,
   },
+  boxPrice: {
+    fontSize: '16px',
+    fontWeight: 'bold',
+    marginRight: 8,
+  },
 }));
 
 Product.propTypes = {
@@ -30,7 +35,10 @@ function Product({ product }) {
 
       <Typography variant="body2">{product.name}</Typography>
       <Typography variant="body2">
-        {product.salePrice} - {product.promotionPercent}
+        <Box component="span" className={classes.boxPrice}>
+          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
+        </Box>
+        {product.promotionPercent > 0 ? ` -${product.promotionPercent}%` : ''}
       </Typography>
     </Box>
   );
