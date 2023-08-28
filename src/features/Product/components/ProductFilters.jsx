@@ -13,16 +13,19 @@ function ProductFilters({ filters, onChange }) {
   const handleCategoryChange = (newCategoryId) => {
     if (!onChange) return;
     const newFilters = {
-      ...filters,
       'category.id': newCategoryId,
     };
     onChange(newFilters);
   };
 
+  const handlePriceChange = (values) => {
+    if (onChange) onChange(values);
+  };
+
   return (
     <Box>
       <FilterByCategory onChange={handleCategoryChange} />
-      {/* <FilterByPrice onChange={handleCategoryChange} /> */}
+      <FilterByPrice onChange={handlePriceChange} />
     </Box>
   );
 }
