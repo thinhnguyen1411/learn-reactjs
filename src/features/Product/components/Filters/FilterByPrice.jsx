@@ -42,10 +42,10 @@ function FilterByPrice({ onChange }) {
   const handleSubmit = () => {
     console.log(values);
     if (onChange) onChange(values);
-    // setValues({
-    //   salePrice_gte: 0,
-    //   salePrice_lte: 0,
-    // });
+    setValues({
+      salePrice_gte: 0,
+      salePrice_lte: 0,
+    });
   };
   return (
     <Box className={classes.root}>
