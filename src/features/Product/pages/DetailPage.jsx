@@ -2,6 +2,7 @@ import { Box, Container, Grid, Paper, makeStyles } from '@material-ui/core';
 import ProductThumbnail from '../components/ProductThumbnail';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom';
 import useProductDetail from '../hooks/useProductDetail';
+import ProductInfo from '../components/ProductInfo';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -37,7 +38,7 @@ function DetailPage() {
               <ProductThumbnail product={product} />
             </Grid>
             <Grid item className={classes.right}>
-              Product Info
+              <ProductInfo product={product} />
             </Grid>
           </Grid>
         </Paper>

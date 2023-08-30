@@ -5,6 +5,7 @@ import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants/index';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { formatPrice } from 'utils';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
@@ -41,7 +42,7 @@ function Product({ product }) {
       <Typography variant="body2">{product.name}</Typography>
       <Typography variant="body2">
         <Box component="span" className={classes.boxPrice}>
-          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
+          {formatPrice(product.salePrice)}
         </Box>
         {product.promotionPercent > 0 ? ` -${product.promotionPercent}%` : ''}
       </Typography>
