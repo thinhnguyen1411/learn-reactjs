@@ -24,9 +24,9 @@ const productApi = {
     };
   },
 
-  get(id) {
+  async get(id) {
     const url = `/products/${id}`;
-    return axiosClient.get(url);
+    return await axiosClient.get(url);
   },
 
   add(data) {

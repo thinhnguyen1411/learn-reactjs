@@ -4,6 +4,7 @@ import { Box, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants/index';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const useStyles = makeStyles((theme) => ({
   boxContainer: {
@@ -24,10 +25,14 @@ Product.propTypes = {
 };
 
 function Product({ product }) {
+  const history = useHistory();
   const classes = useStyles();
   const thumbnailUrl = product.thumbnail ? `${STATIC_HOST}${product.thumbnail?.url}` : THUMBNAIL_PLACEHOLDER;
+  const handleClick = () => {
+    history.push(`/products/${product.id}`);
+  };
   return (
-    <Box className={classes.boxContainer}>
+    <Box className={classes.boxContainer} onClick={handleClick}>
       {/* <Skeleton variant="rect" width="100%" height={118} /> */}
       <Box className={classes.imgContainer} minHeight="215px">
         <img src={thumbnailUrl} alt={product.name} width="100%" />
